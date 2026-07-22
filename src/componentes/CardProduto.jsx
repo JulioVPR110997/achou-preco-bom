@@ -1,19 +1,19 @@
-function formatarPreco(preco) {
-  if (preco === null) return "Consulte na página oficial";
-
-  return preco.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
+function moeda(valor) {
+  if (valor === null) return "Consulte no site oficial";
+  return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
 export default function CardProduto({ produto }) {
   const linkDisponivel = produto.link !== "#";
+  const desconto = produto.precoAnterior && produto.preco
+    ? Math.round((1 - produto.preco / produto.precoAnterior) * 100)
+    : null;
 
   return (
     <article className="card-produto">
-      <div className="capa-produto" aria-hidden="true">
-        {produto.loja === "Hotmart" ? "🎓" : "🏷️"}
+      <div className={`capa-produto ${produto.cor || "verde"}`}>
+        {desconto && <span className="desconto">-{desconto}%</span>}
+        <span aria-hidden="true">{produto.icone || "🏷️"}</span>
       </div>
       <div className="conteudo-card">
         <div className="linha-card">
@@ -22,7 +22,10 @@ export default function CardProduto({ produto }) {
         </div>
         <h3>{produto.nome}</h3>
         <p>{produto.descricao}</p>
-        <strong className="preco">{formatarPreco(produto.preco)}</strong>
+        <div className="bloco-preco">
+          {produto.precoAnterior && <del>{moeda(produto.precoAnterior)}</del>}
+          <strong className="preco">{moeda(produto.preco)}</strong>
+        </div>
         <a
           className={`botao-oferta ${!linkDisponivel ? "desativado" : ""}`}
           href={produto.link}
@@ -31,8 +34,9 @@ export default function CardProduto({ produto }) {
           aria-disabled={!linkDisponivel}
           onClick={(evento) => !linkDisponivel && evento.preventDefault()}
         >
-          {linkDisponivel ? "Ver oferta" : "Link de demonstração"}
+          {linkDisponivel ? "Ver oferta →" : "Aguardando integração"}
         </a>
+        {produto.demonstracao && <small className="nota-demo">Preço ilustrativo — não é uma oferta real.</small>}
       </div>
     </article>
   );
