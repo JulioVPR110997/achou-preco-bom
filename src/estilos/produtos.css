@@ -1,0 +1,6 @@
+.capa-produto img {
+  height: 100%;
+  object-fit: contain;
+  padding: 14px;
+  width: 100%;
+}
