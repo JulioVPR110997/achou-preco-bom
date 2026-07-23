@@ -10,7 +10,7 @@ export default function App() {
   const produtosVisiveis = useMemo(() => {
     let lista = produtos.filter((produto) => produto.ativo);
     if (abaAtiva === "inicio") lista = lista.filter((produto) => produto.destaque);
-    else if (abaAtiva === "ofertas") lista = lista.filter((produto) => produto.precoAnterior);
+    else if (abaAtiva === "ofertas") lista = lista.filter((produto) => produto.loja === "Magalu");
     else lista = lista.filter((produto) => produto.categoria === abaAtiva);
     const termo = busca.trim().toLowerCase();
     if (termo) lista = lista.filter((produto) => `${produto.nome} ${produto.loja} ${produto.descricao}`.toLowerCase().includes(termo));
