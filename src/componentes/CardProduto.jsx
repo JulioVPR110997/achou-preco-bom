@@ -13,7 +13,11 @@ export default function CardProduto({ produto }) {
     <article className="card-produto">
       <div className={`capa-produto ${produto.cor || "verde"}`}>
         {desconto && <span className="desconto">-{desconto}%</span>}
-        <span aria-hidden="true">{produto.icone || "🏷️"}</span>
+        {produto.imagem ? (
+          <img src={produto.imagem} alt={produto.nome} loading="lazy" />
+        ) : (
+          <span aria-hidden="true">{produto.icone || "🏷️"}</span>
+        )}
       </div>
       <div className="conteudo-card">
         <div className="linha-card">
