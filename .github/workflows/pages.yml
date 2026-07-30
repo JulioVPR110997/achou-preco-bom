@@ -36,7 +36,7 @@ jobs:
           enablement: true
 
       - name: Gerar o site
-        run: npm run build -- --base=/achou-preco-bom/
+        run: npm run build -- --base=/
 
       - name: Preparar arquivos publicados
         uses: actions/upload-pages-artifact@v3
