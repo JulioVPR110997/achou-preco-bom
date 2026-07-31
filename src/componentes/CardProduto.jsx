@@ -9,6 +9,22 @@ export default function CardProduto({ produto }) {
     ? Math.round((1 - produto.preco / produto.precoAnterior) * 100)
     : null;
 
+  function registrarClique(evento) {
+    if (!linkDisponivel) {
+      evento.preventDefault();
+      return;
+    }
+
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "affiliate_click", {
+        item_id: produto.id,
+        item_name: produto.nome,
+        affiliate: produto.loja,
+        link_url: produto.link,
+      });
+    }
+  }
+
   return (
     <article className="card-produto">
       <div className={`capa-produto ${produto.cor || "verde"}`}>
@@ -36,7 +52,7 @@ export default function CardProduto({ produto }) {
           target={linkDisponivel ? "_blank" : undefined}
           rel={linkDisponivel ? "sponsored noopener noreferrer" : undefined}
           aria-disabled={!linkDisponivel}
-          onClick={(evento) => !linkDisponivel && evento.preventDefault()}
+          onClick={registrarClique}
         >
           {linkDisponivel ? "Ver oferta →" : "Aguardando integração"}
         </a>
