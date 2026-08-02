@@ -33,8 +33,7 @@ export default function App() {
       <div className="barra-topo">Links selecionados • Compra realizada sempre no site da loja parceira</div>
       <header className="cabecalho">
         <button className="marca" onClick={() => navegar("inicio")} type="button">
-          <span className="simbolo-marca">A</span>
-          <span><b>Achou</b> Preço Bom</span>
+          <img className="logo-principal" src="/logo-achou-preco-bom.svg" alt="Achou Preço Bom" />
         </button>
         <label className="busca">
           <span>⌕</span>
@@ -100,7 +99,7 @@ export default function App() {
       </main>
 
       <footer>
-        <div className="rodape-marca"><span className="simbolo-marca">A</span><p><b>Achou Preço Bom</b><small>Boas escolhas começam com informação clara.</small></p></div>
+        <div className="rodape-marca"><img className="logo-rodape" src="/logo-achou-preco-bom.svg" alt="Achou Preço Bom" /><small>Boas escolhas começam com informação clara.</small></div>
         <div><b>Categorias</b><button onClick={() => navegar("ofertas")}>Ofertas</button><button onClick={() => navegar("cursos")}>Cursos</button><button onClick={() => navegar("viagens")}>Viagens</button></div>
         <div><b>Informações</b><span>Política de transparência</span><span>Contato (em breve)</span><span>© 2026 Achou Preço Bom</span></div>
       </footer>
