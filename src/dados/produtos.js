@@ -1,4 +1,5 @@
 import produtosMagalu from "./magalu.json";
+import produtosAmazon from "./amazon.json";
 
 const cursoHotmart = {
   id: "hotmart-1709940",
@@ -17,6 +18,6 @@ const cursoHotmart = {
   ativo: true,
 };
 
-// Catálogo coletado da vitrine pública magazineachouprecobom.
+// Catálogo coletado das vitrines e páginas públicas das lojas parceiras.
 // Preços e disponibilidade devem sempre ser confirmados no site oficial.
-export const produtos = [...produtosMagalu, cursoHotmart];
+export const produtos = [...produtosAmazon, ...produtosMagalu, cursoHotmart];
